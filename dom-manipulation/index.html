@@ -4,22 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quotes App - Task 0</title>
+    <title>Dynamic Quote Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #quoteDisplay {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        input,
+        button {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Quotes App</h1>
+    <h1>Dynamic Quote Generator</h1>
 
-    <!-- مكان عرض الاقتباس -->
-    <div id="quoteDisplay" style="margin: 10px 0; font-weight: bold;"></div>
+    <div id="quoteDisplay">Click "Show New Quote" to get started!</div>
+    <button id="newQuote">Show New Quote</button>
 
-    <!-- إدخال اقتباس جديد -->
-    <input type="text" id="quoteInput" placeholder="Enter a new quote">
-    <input type="text" id="categoryInput" placeholder="Enter category">
-    <button onclick="addQuote()">Add Quote</button>
+    <h2>Add a New Quote</h2>
+    <div>
+        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
+        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
+        <button id="addQuoteBtn">Add Quote</button>
+    </div>
 
-    <!-- زرار عرض اقتباس جديد -->
-    <button id="newQuoteBtn">Show New Quote</button>
+    <h2>Filter Quotes by Category</h2>
+    <input id="filterCategory" type="text" placeholder="Enter category to filter" />
+    <button id="filterBtn">Filter</button>
 
     <script src="script.js"></script>
 </body>
