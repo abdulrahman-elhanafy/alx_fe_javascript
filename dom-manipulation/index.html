@@ -18,8 +18,11 @@
         }
 
         input,
-        button {
+        button,
+        select {
             margin: 5px 0;
+            padding: 5px 10px;
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -27,9 +30,11 @@
 <body>
     <h1>Dynamic Quote Generator</h1>
 
+    <!-- Display quote -->
     <div id="quoteDisplay">Click "Show New Quote" to get started!</div>
     <button id="newQuote">Show New Quote</button>
 
+    <!-- Add new quote -->
     <h2>Add a New Quote</h2>
     <div>
         <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
@@ -37,10 +42,16 @@
         <button id="addQuoteBtn">Add Quote</button>
     </div>
 
+    <!-- Filter quotes by category -->
     <h2>Filter Quotes by Category</h2>
-    <input id="filterCategory" type="text" placeholder="Enter category to filter" />
-    <button id="filterBtn">Filter</button>
+    <select id="categoryFilter"></select>
 
+    <!-- Export / Import JSON -->
+    <h2>Export / Import Quotes</h2>
+    <button id="exportBtn">Export Quotes as JSON</button>
+    <input type="file" id="importFile" accept=".json" />
+
+    <!-- Script -->
     <script src="script.js"></script>
 </body>
 
