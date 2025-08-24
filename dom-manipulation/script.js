@@ -19,18 +19,18 @@ const newQuoteBtn = document.getElementById("newQuote");
 const addQuoteBtn = document.getElementById("addQuoteBtn");
 const filterBtn = document.getElementById("filterBtn");
 
-// Show random quote
-function showRandomQuote(filteredQuotes = quotes) {
+// Display a random quote
+function displayRandomQuote(filteredQuotes = quotes) {
   if (filteredQuotes.length === 0) {
-    quoteDisplay.textContent = "No quotes found!";
+    quoteDisplay.innerHTML = "No quotes found!";
     return;
   }
   const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
   const quote = filteredQuotes[randomIndex];
-  quoteDisplay.textContent = `"${quote.text}" — ${quote.category}`;
+  quoteDisplay.innerHTML = `"${quote.text}" — <strong>${quote.category}</strong>`;
 }
 
-// Add new quote dynamically
+// Add a new quote dynamically
 function addQuote() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
@@ -42,11 +42,15 @@ function addQuote() {
     return;
   }
 
+  // Add the new quote to the array
   quotes.push({ text, category });
+
+  // Clear inputs
   textInput.value = "";
   categoryInput.value = "";
-  alert("Quote added successfully!");
-  showRandomQuote();
+
+  // Update the display
+  displayRandomQuote();
 }
 
 // Filter quotes by category
@@ -55,18 +59,18 @@ function filterQuotes() {
   const category = filterInput.value.trim().toLowerCase();
 
   if (category === "") {
-    showRandomQuote(); // Show any quote if filter empty
+    displayRandomQuote(); // Show any quote if filter empty
     return;
   }
 
   const filtered = quotes.filter((q) => q.category.toLowerCase() === category);
-  showRandomQuote(filtered);
+  displayRandomQuote(filtered);
 }
 
 // Event listeners
-newQuoteBtn.addEventListener("click", () => showRandomQuote());
+newQuoteBtn.addEventListener("click", () => displayRandomQuote());
 addQuoteBtn.addEventListener("click", addQuote);
 filterBtn.addEventListener("click", filterQuotes);
 
 // Optional: Show a random quote on page load
-showRandomQuote();
+displayRandomQuote();
