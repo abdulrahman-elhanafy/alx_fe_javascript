@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Quote Generator</title>
+    <title>Quotes App - Task 0</title>
 </head>
 
 <body>
-    <h1>Dynamic Quote Generator</h1>
+    <h1>Quotes App</h1>
 
     <!-- مكان عرض الاقتباس -->
-    <div id="quoteDisplay"></div>
-    <button id="newQuote">Show New Quote</button>
+    <div id="quoteDisplay" style="margin: 10px 0; font-weight: bold;"></div>
 
-    <!-- إضافة اقتباس جديد -->
-    <div>
-        <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
-        <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
-        <button onclick="addQuote()">Add Quote</button>
-    </div>
+    <!-- إدخال اقتباس جديد -->
+    <input type="text" id="quoteInput" placeholder="Enter a new quote">
+    <input type="text" id="categoryInput" placeholder="Enter category">
+    <button onclick="addQuote()">Add Quote</button>
+
+    <!-- زرار عرض اقتباس جديد -->
+    <button id="newQuoteBtn">Show New Quote</button>
 
     <script src="script.js"></script>
 </body>
