@@ -38,7 +38,7 @@ function showRandomQuote(filteredQuotes = quotes) {
 }
 
 // ====== Task 0: Add New Quote ======
-function addQuote() {
+function createAddQuoteForm() {
   const textInput = document.getElementById("newQuoteText");
   const categoryInput = document.getElementById("newQuoteCategory");
   const text = textInput.value.trim();
@@ -148,7 +148,7 @@ async function fetchQuotesFromServer() {
 
 // ====== Event Listeners ======
 newQuoteBtn.addEventListener("click", () => showRandomQuote());
-addQuoteBtn.addEventListener("click", addQuote);
+addQuoteBtn.addEventListener("click", createAddQuoteForm);
 filterSelect.addEventListener("change", filterQuotes);
 document
   .getElementById("exportBtn")
