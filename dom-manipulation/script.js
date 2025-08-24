@@ -169,6 +169,12 @@ async function postQuotesToServer() {
   }
 }
 
+// ====== Task 3: Sync Quotes Wrapper ======
+async function syncQuotes() {
+  await fetchQuotesFromServer();
+  await postQuotesToServer();
+}
+
 // ====== Event Listeners ======
 newQuoteBtn.addEventListener("click", () => showRandomQuote());
 addQuoteBtn.addEventListener("click", createAddQuoteForm);
@@ -189,5 +195,5 @@ if (lastQuote) {
   showRandomQuote();
 }
 
-// Periodic server sync every 30s
-setInterval(fetchQuotesFromServer, 30000);
+// ====== Periodic Server Sync every 30s ======
+setInterval(syncQuotes, 30000);
