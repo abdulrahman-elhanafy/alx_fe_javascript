@@ -10,8 +10,8 @@ let quotes = [
   },
 ];
 
-// Function to show a quote by index
-function showQuote(index) {
+// Function to display a quote by index
+function displayRandomQuote(index) {
   const quoteDisplay = document.getElementById("quoteDisplay");
   quoteDisplay.textContent = `"${quotes[index].text}" - (${quotes[index].category})`;
 }
@@ -23,7 +23,7 @@ function addQuote() {
 
   if (quoteInput !== "" && categoryInput !== "") {
     quotes.push({ text: quoteInput, category: categoryInput });
-    showQuote(quotes.length - 1); // يعرض آخر اقتباس مضاف
+    displayRandomQuote(quotes.length - 1); // يعرض آخر اقتباس مضاف
     document.getElementById("quoteInput").value = "";
     document.getElementById("categoryInput").value = "";
   }
@@ -32,8 +32,8 @@ function addQuote() {
 // Event listener for "Show New Quote" button
 document.getElementById("newQuoteBtn").addEventListener("click", () => {
   const randomIndex = Math.floor(Math.random() * quotes.length);
-  showQuote(randomIndex);
+  displayRandomQuote(randomIndex);
 });
 
 // Show the first quote on load
-showQuote(0);
+displayRandomQuote(0);
