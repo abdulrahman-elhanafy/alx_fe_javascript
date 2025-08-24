@@ -34,7 +34,7 @@ function showRandomQuote(filteredQuotes = quotes) {
   const randomIndex = Math.floor(Math.random() * filteredQuotes.length);
   const quote = filteredQuotes[randomIndex];
   quoteDisplay.innerHTML = `"${quote.text}" — <strong>${quote.category}</strong>`;
-  sessionStorage.setItem("lastQuote", JSON.stringify(quote)); // optional session storage
+  sessionStorage.setItem("lastQuote", JSON.stringify(quote));
 }
 
 // ====== Task 0: Add New Quote ======
@@ -55,12 +55,15 @@ function createAddQuoteForm() {
   textInput.value = "";
   categoryInput.value = "";
   showRandomQuote();
+
+  // Send updated quotes to server
+  postQuotesToServer();
 }
 
 // ====== Task 2: Populate Categories (appendChild) ======
 function populateCategories() {
   const categories = ["all", ...new Set(quotes.map((q) => q.category))];
-  filterSelect.innerHTML = ""; // clear old options
+  filterSelect.innerHTML = "";
 
   categories.forEach((cat) => {
     const option = document.createElement("option");
@@ -112,6 +115,9 @@ function importFromJsonFile(event) {
       populateCategories();
       showRandomQuote();
       alert("Quotes imported successfully!");
+
+      // Send imported quotes to server
+      postQuotesToServer();
     } catch (err) {
       alert("Invalid JSON file!");
     }
@@ -146,6 +152,23 @@ async function fetchQuotesFromServer() {
   }
 }
 
+// ====== Task 3: POST Quotes to Server ======
+async function postQuotesToServer() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quotes),
+    });
+    const data = await response.json();
+    console.log("Quotes posted to server:", data);
+  } catch (err) {
+    console.error("Error posting quotes to server:", err);
+  }
+}
+
 // ====== Event Listeners ======
 newQuoteBtn.addEventListener("click", () => showRandomQuote());
 addQuoteBtn.addEventListener("click", createAddQuoteForm);
@@ -166,5 +189,5 @@ if (lastQuote) {
   showRandomQuote();
 }
 
-// Optional: Periodic server sync every 30s
+// Periodic server sync every 30s
 setInterval(fetchQuotesFromServer, 30000);
