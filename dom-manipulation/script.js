@@ -26,7 +26,7 @@ function saveQuotes() {
 }
 
 // ====== Task 0: Display Random Quote ======
-function displayRandomQuote(filteredQuotes = quotes) {
+function showRandomQuote(filteredQuotes = quotes) {
   if (filteredQuotes.length === 0) {
     quoteDisplay.innerHTML = "No quotes found!";
     return;
@@ -54,7 +54,7 @@ function addQuote() {
   populateCategories();
   textInput.value = "";
   categoryInput.value = "";
-  displayRandomQuote();
+  showRandomQuote();
 }
 
 // ====== Task 2: Populate Categories (appendChild) ======
@@ -79,12 +79,12 @@ function filterQuotes() {
   localStorage.setItem("lastFilter", selectedCategory);
 
   if (selectedCategory === "all") {
-    displayRandomQuote();
+    showRandomQuote();
   } else {
     const filtered = quotes.filter(
       (q) => q.category.toLowerCase() === selectedCategory.toLowerCase()
     );
-    displayRandomQuote(filtered);
+    showRandomQuote(filtered);
   }
 }
 
@@ -110,7 +110,7 @@ function importFromJsonFile(event) {
       quotes.push(...importedQuotes);
       saveQuotes();
       populateCategories();
-      displayRandomQuote();
+      showRandomQuote();
       alert("Quotes imported successfully!");
     } catch (err) {
       alert("Invalid JSON file!");
@@ -139,7 +139,7 @@ async function fetchQuotesFromServer() {
     quotes = mergedQuotes;
     saveQuotes();
     populateCategories();
-    displayRandomQuote();
+    showRandomQuote();
     console.log("Quotes synced with server!");
   } catch (err) {
     console.error("Error fetching quotes from server:", err);
@@ -147,7 +147,7 @@ async function fetchQuotesFromServer() {
 }
 
 // ====== Event Listeners ======
-newQuoteBtn.addEventListener("click", () => displayRandomQuote());
+newQuoteBtn.addEventListener("click", () => showRandomQuote());
 addQuoteBtn.addEventListener("click", addQuote);
 filterSelect.addEventListener("change", filterQuotes);
 document
@@ -163,7 +163,7 @@ const lastQuote = JSON.parse(sessionStorage.getItem("lastQuote"));
 if (lastQuote) {
   quoteDisplay.innerHTML = `"${lastQuote.text}" — <strong>${lastQuote.category}</strong>`;
 } else {
-  displayRandomQuote();
+  showRandomQuote();
 }
 
 // Optional: Periodic server sync every 30s
